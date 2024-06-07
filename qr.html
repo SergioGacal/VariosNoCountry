@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Codigo QR</title>
+    <style>
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        #qrcode {
+            width: 200px;
+            height: 200px;
+            margin-top: 15px;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        h1 {
+            color: #007bff;
+        }
+        .input-group input {
+            width: calc(100% - 120px);
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .input-group button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Generar QR</h1>
+        <div class="input-group">
+            <input type="text" id="url-input" placeholder="Ingresa una URL">
+            <button onclick="generateQRCode()">Generar QR</button>
+        </div>
+        <div id="qrcode"></div>
+    </div>
+
+    <!-- Incluye la biblioteca QRCode.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <script>
+        function generateQRCode() {
+            var url = document.getElementById("url-input").value;
+            if (!url) {
+                alert("Por favor, ingresa una URL.");
+                return;
+            }
+            // Limpiar el contenido anterior
+            document.getElementById("qrcode").innerHTML = "";
+            // Crear el QR code y añadirlo al div con id "qrcode"
+            new QRCode(document.getElementById("qrcode"), {
+                text: url,
+                width: 200,
+                height: 200
+            });
+        }
+    </script>
+</body>
+</html>
